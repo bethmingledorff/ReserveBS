@@ -2,7 +2,7 @@
 <h3><%= @restaurant.description %></h3>
 <h3><%= @restaurant.address %></h3>
 <h3><%= @restaurant.phone %></h3>
-<h3><%= @restaurant.owner_id %></h3>
+<h3>Owner: <%= @restaurant.owner.name %></h3>
 
 
 <%= link_to "Edit", edit_restaurant_path %>

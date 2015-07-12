@@ -1,5 +1,17 @@
 class RestaurantsController < ApplicationController
 	before_action :authenticate_owner!, except: [:index, :show]
+	before_action :set_restaurant, only: [:edit, :update, :destroy]
+
+	private
+
+	def set_restaurant
+		@restaurant = current_owner.restaurants.find(params[:id])
+	    rescue ActiveRecord::RecordNotFound
+			redirect_to(root_url, :notice => "You don't own this restaurant!")
+  end
+
+
+public
 
 	def index
 		@restaurant = Restaurant.all
@@ -36,11 +48,13 @@ class RestaurantsController < ApplicationController
 		@restaurant = Restaurant.find(params[:id])
 	end
 
-		def destroy
+	def destroy
 		@restaurant = current_owner.restaurants.find(params[:id])
 		@restaurant.destroy
 		redirect_to restaurants_url
 	end
+
+
 
 
 end
