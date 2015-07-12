@@ -1,0 +1,26 @@
+<h2>Restaurants</h2>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><%= link_to "Add New Restaurant", new_restaurant_path %>
+</button>
+</div>
+
+<br>
+<br>
+
+	<% @restaurant.each do |restaurant| %>
+		<%= link_to restaurant.name, restaurant_path(restaurant) %> -
+		<%= restaurant.description %><br />
+		<%= restaurant.address %><br />
+		<%= restaurant.phone %></br>
+
+		<div class="btn-group" role="group" aria-label="...">
+  		<button type="button" class="btn btn-default"><%= link_to "Edit Restaurant", edit_restaurant_path(restaurant) %></button>
+    	<button type="button" class="btn btn-default"><%= link_to "Destroy Restaurant", restaurant, method: :delete, data: { confirm: "Are you sure?" }  %></button>
+
+
+</div>
+
+	<br />
+	<br />
+	<% end %>
